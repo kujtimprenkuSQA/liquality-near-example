@@ -75,7 +75,7 @@ const signAndSendTransaction = async () => {
     method: "wallet_sendTransaction",
     params: [
       {
-        to: "guest-book.testnet",
+        to: "kujtim.testnet",
         value: "2",
         data: "", // not sure why this is needed
         // actions: [] if no action type is provided by default a transfer action will be called with the value above.
