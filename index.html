@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Understanding TypeScript</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+    <!--    <script src="dist/app.js" defer></script>-->
+    <script src="src/index.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <div class="card">
+        <header>
+          <img
+            src="https://liquality.io/images/LiqualityHorizontal.svg"
+            alt=""
+          />
+        </header>
+        <button class="connect-button" id="connect">Connect With Near!</button>
+        <div
+          class="connected"
+          id="connected-container"
+          style="margin-bottom: 20px"
+        >
+          <span style="margin-bottom: 20px"
+            ><i
+              >Note: the results of these button clicks show only in console</i
+            ></span
+          >
+          <br />
+          <br />
+          <button id="get-network">Get Network</button>
+
+          <button id="get-address">Get Addresses</button>
+
+          <button id="sign-message">Sign Message</button>
+
+          <button id="send-transaction">Send Transaction</button>
+          <br />
+        </div>
+        <div style="margin-bottom: 20px">
+          <a href="https://wallet.testnet.near.org/" target="_blank"
+            >NEAR Testnet Wallet</a
+          >
+        </div>
+      </div>
+      <div class="issue card">
+        <h2>Account Name issue:</h2>
+        <p>
+          When sending a transaction in the extension's window,if we open
+          inspect element then we can see an error which says:
+        </p>
+        <p style="color: red">
+          <strong
+            >Error: ENS name not configured
+            (operation="resolveName(\"kujtim.testnet\")",
+            code=UNSUPPORTED_OPERATION, version=providers/5.5.3)</strong
+          >
+        </p>
+
+        I think the error is coming form this code here:
+        <a
+          href="https://github.com/liquality/wallet/blob/release-candidate-0.57.0/src/components/ConnectionDrawer.vue#L11"
+          target="_blank"
+          >ConnectionDrawer.vue</a
+        >
+      </div>
+      <div class="issue card">
+        <h2>Deposit amount not showing the right value (probably a bug)</h2>
+        <p>
+          When you click the "Send Transaction" button above you'll notice that
+          even though in the code value of the donation amount has been set
+          (hard-coded) to <strong>2</strong> in the UI shows as
+          <strong>0</strong>
+        </p>
+        <a
+          href="https://github.com/liquality/wallet/blob/release-candidate-0.57.0/src/views/PermissionSend.vue#L351"
+          target=""
+          >PermissionSend.vue</a
+        >
+      </div>
+    </main>
+  </body>
+</html>
