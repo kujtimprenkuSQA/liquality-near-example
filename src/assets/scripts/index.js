@@ -71,13 +71,26 @@ const signAndSendTransaction = async () => {
    *
    * */
 
+  // It looks like we need to send a HEX string for the deposit (value)
+
+  // But the deposit first needs to parsed to yoctoⓃ.
+  // Then we need to convert yoctoⓃ to number.
+  // Finally convert it to HEX string.
+
+  // Parse deposit value to yoctoⓃ
+  let deposit = +parseNearAmount("0.01");
+  // Convert deposit yoctoⓃ value to HEX string
+  deposit = deposit.toString(16);
+
+  console.log(deposit);
   const signAndSendTransaction = await window.near.request({
     method: "wallet_sendTransaction",
     params: [
       {
         to: "kujtim.testnet",
-        value: "2",
+        value: deposit,
         data: "", // not sure why this is needed
+        // I need to figure out how to send actions correctly.
         // actions: [] if no action type is provided by default a transfer action will be called with the value above.
       },
     ],
