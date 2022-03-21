@@ -90,7 +90,21 @@ const signAndSendTransaction = async () => {
         to: "kujtim.testnet",
         value: deposit,
         data: "", // not sure why this is needed
-        // I need to figure out how to send actions correctly.
+        /**
+         *  It looks like they are not passing the 'actions' to the sendTransaction method.
+         *  In the component they make a call to this method 'replyPermission (vue store action)
+         *  https://github.com/liquality/wallet/blob/release-candidate-0.57.0/src/views/PermissionSend.vue#L238
+         *
+         *  And the replyPermission then dispatches another event 'executeRequest'
+         *  https://github.com/liquality/wallet/blob/release-candidate-0.57.0/src/store/actions/replyPermission.js#L7
+         *
+         * Which in the end executes this check, and you can see there's no 'actions' key in the payload for 'sendTransaction' event.
+         *  https://github.com/liquality/wallet/blob/release-candidate-0.57.0/src/store/actions/executeRequest.js#L8
+         *
+         *
+         *  What happens is that in the end this check is run :/
+         *  https://github.com/liquality/chainabstractionlayer/blob/dev/packages/near-js-wallet-provider/lib/NearJsWalletProvider.ts#L91
+         * */
         // actions: [] if no action type is provided by default a transfer action will be called with the value above.
       },
     ],
